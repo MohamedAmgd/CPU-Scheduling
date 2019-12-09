@@ -3,11 +3,11 @@ class process:
     turn_around = 0
     exit_time = 0
 
-    def __init__(self, arrival, brust):
+    def __init__(self, arrival, burst):
         self.arrival = arrival
-        self.brust = brust
+        self.burst = burst
         self.waiting_arrival = arrival
-        self.remaining = brust
+        self.remaining = burst
 
     def getArrival(self):
         return self.arrival
@@ -15,11 +15,11 @@ class process:
     def setArrival(self, arrival):
         self.arrival = arrival
 
-    def getBrust(self):
-        return self.brust
+    def getBurst(self):
+        return self.burst
 
-    def setBrust(self, brust):
-        self.brust = brust
+    def setBurst(self, burst):
+        self.burst = burst
 
     def getWaitingArrival(self):
         return self.waiting_arrival

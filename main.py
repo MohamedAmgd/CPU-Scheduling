@@ -25,7 +25,7 @@ def avgWaiting(dic):
 
 def printAlgo(dic):
     for i in dic:
-        print("{0}: Arrival = {1} Brust = {2}  Waiting = {3} Turn around = {4}".format(i, dic[i].getArrival(), dic[i].getBrust(),
+        print("{0}: Arrival = {1} Burst = {2}  Waiting = {3} Turn around = {4}".format(i, dic[i].getArrival(), dic[i].getBurst(),
                                                                                        dic[i].getWaiting(), dic[i].getTurnaround()))
     print("avg Waiting = {0} , avg Turn Around = {1}".format(
         avgWaiting(dic), avgTurnAround(dic)))
@@ -37,10 +37,10 @@ def FCFS(processes_dic):
         if (processes_dic[i].getArrival() > time):
             time = processes_dic[i].getArrival()
         processes_dic[i].setWaiting(time - processes_dic[i].getArrival())
-        time += processes_dic[i].getBrust()
+        time += processes_dic[i].getBurst()
     for i in processes_dic:
         processes_dic[i].setTurnaround(
-            processes_dic[i].getBrust() + processes_dic[i].getWaiting())
+            processes_dic[i].getBurst() + processes_dic[i].getWaiting())
     return processes_dic
 
 
@@ -52,15 +52,15 @@ def SJF(processes_dic):
         if (remaing_processes[first_key].getArrival() > time):
             time = remaing_processes[first_key].getArrival()
         waiting_dic = dict(
-            sorted(filterTheDict(remaing_processes, time).items(), key=lambda x: x[1].getBrust()))
-        min_brust = next(iter(waiting_dic))
-        processes_dic[min_brust].setWaiting(
-            time - processes_dic[min_brust].getArrival())
-        time += processes_dic[min_brust].getBrust()
-        remaing_processes.pop(min_brust)
+            sorted(filterTheDict(remaing_processes, time).items(), key=lambda x: x[1].getBurst()))
+        min_burst = next(iter(waiting_dic))
+        processes_dic[min_burst].setWaiting(
+            time - processes_dic[min_burst].getArrival())
+        time += processes_dic[min_burst].getBurst()
+        remaing_processes.pop(min_burst)
     for i in processes_dic:
         processes_dic[i].setTurnaround(
-            processes_dic[i].getBrust() + processes_dic[i].getWaiting())
+            processes_dic[i].getBurst() + processes_dic[i].getWaiting())
 
     return processes_dic
 
@@ -85,7 +85,7 @@ def SRTF(processes_dic):
         processes_dic[i].setTurnaround(
             processes_dic[i].getExitTime() - processes_dic[i].getArrival())
         processes_dic[i].setWaiting(
-            processes_dic[i].getTurnaround() - processes_dic[i].getBrust())
+            processes_dic[i].getTurnaround() - processes_dic[i].getBurst())
     return processes_dic
 
 
@@ -118,7 +118,7 @@ def RR(processes_dic, q):
         processes_dic[i].setTurnaround(
             processes_dic[i].getExitTime() - processes_dic[i].getArrival())
         processes_dic[i].setWaiting(
-            processes_dic[i].getTurnaround() - processes_dic[i].getBrust())
+            processes_dic[i].getTurnaround() - processes_dic[i].getBurst())
 
     return processes_dic
 
@@ -158,7 +158,7 @@ def start():
                 num = ""
         for i in range(int(num)):
             arrival = ""
-            brust = ""
+            burst = ""
             while not isinstance(arrival, int):
                 arrival = input(
                     "enter process {0} (P{0}) arrival time:".format(i+1))
@@ -168,19 +168,19 @@ def start():
                         arrival = ""
                 except:
                     arrival = ""
-            while not isinstance(brust, int):
-                brust = input(
-                    "enter process {0} (P{0}) brust time:".format(i+1))
+            while not isinstance(burst, int):
+                burst = input(
+                    "enter process {0} (P{0}) burst time:".format(i+1))
                 try:
-                    brust = int(brust)
-                    if brust <= 0:
-                        brust = ""
+                    burst = int(burst)
+                    if burst <= 0:
+                        burst = ""
                 except:
-                    brust = ""
-            input_FCFS["P" + str(i+1)] = process(int(arrival), int(brust))
-            input_SJF["P" + str(i+1)] = process(int(arrival), int(brust))
-            input_SRTF["P" + str(i+1)] = process(int(arrival), int(brust))
-            input_RR["P" + str(i+1)] = process(int(arrival), int(brust))
+                    burst = ""
+            input_FCFS["P" + str(i+1)] = process(int(arrival), int(burst))
+            input_SJF["P" + str(i+1)] = process(int(arrival), int(burst))
+            input_SRTF["P" + str(i+1)] = process(int(arrival), int(burst))
+            input_RR["P" + str(i+1)] = process(int(arrival), int(burst))
         if choice == 1:
             print("================================================")
             print("FCFS :")
@@ -248,4 +248,5 @@ def start():
             input("Press any key to continue")
 
 
-start()
+if __name__ == '__main__':
+    start()
