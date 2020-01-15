@@ -1,9 +1,11 @@
-A CPU Scheduler uses Four Algorithms
+A Calculator of CPU Scheduling Algorithms.
 
-The First Algorithm Is 'First in first out (FCFS)'
+It calculates the average waiting and turnaround time of 4 CPU Scheduling Algorithms :-
 
-The Second Algorithm Is 'Shortest Job first (SJF)'
+- First Come First Serve (FCFS)
 
-The Third Algorithm Is 'Shortest Remaining Time first (SRTF)'
+- Shortest Job First (SJF)
 
-The Fourth Algorithm Is 'Round Robin (RR)'
+- Shortest Remaining Time First (SRTF)
+
+- Round Robin (RR)
